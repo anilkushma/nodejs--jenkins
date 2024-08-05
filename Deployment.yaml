@@ -1,4 +1,4 @@
- apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs-app-deployment
@@ -14,8 +14,9 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: your-dockerhub-username/nodejs-app:latest
+        image: ramboo2023/nodejs-app:latest
         ports:
         - containerPort: 3000
         command: ["node"]
         args: ["app.js"]
+
