@@ -5,13 +5,13 @@ FROM node:18 AS build
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package*.json ./
+COPY app/package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY app/ ./
 
-# Build or compile the app if needed (e.g., if using TypeScript or Babel)
+# Optionally build or compile the app if needed (e.g., if using TypeScript or Babel)
 # RUN npm run build
 
 # Start from a fresh image to reduce the final image size
