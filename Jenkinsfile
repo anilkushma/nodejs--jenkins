@@ -17,6 +17,8 @@ pipeline {
             steps {
                 script {
                     def app = docker.build("${DOCKER_IMAGE}:${env.BUILD_ID}")
+                    // Optionally, you can also tag with a specific version or latest
+                    docker.tag("${DOCKER_IMAGE}:${env.BUILD_ID}", "${DOCKER_IMAGE}:latest")
                 }
             }
         }
@@ -25,8 +27,10 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                        // Push specific build ID tag
                         docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
-                        docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push('latest')
+                        // Push latest tag
+                        docker.image("${DOCKER_IMAGE}:latest").push()
                     }
                 }
             }
