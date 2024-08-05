@@ -27,4 +27,5 @@ COPY --from=build /usr/src/app /usr/src/app
 EXPOSE 3000
 
 # Command to run the app
-CMD [ "node", "app.js" ]
+CMD ["node", "app.js"]
+
